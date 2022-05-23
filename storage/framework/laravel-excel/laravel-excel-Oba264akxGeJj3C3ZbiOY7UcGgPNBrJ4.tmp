@@ -1,0 +1,167 @@
+-- --------------------------------------------------------
+-- Host:                         165.232.165.243
+-- Server version:               8.0.26-0ubuntu0.20.04.2 - (Ubuntu)
+-- Server OS:                    Linux
+-- HeidiSQL Version:             11.3.0.6295
+-- --------------------------------------------------------
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+
+-- Dumping database structure for pms_membership_dev
+CREATE DATABASE IF NOT EXISTS `pms_membership_dev` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
+USE `pms_membership_dev`;
+
+-- Dumping structure for table pms_membership_dev.adonis_schema
+CREATE TABLE IF NOT EXISTS `adonis_schema` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `batch` int NOT NULL,
+  `migration_time` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table pms_membership_dev.adonis_schema: ~6 rows (approximately)
+/*!40000 ALTER TABLE `adonis_schema` DISABLE KEYS */;
+INSERT INTO `adonis_schema` (`id`, `name`, `batch`, `migration_time`) VALUES
+	(1, 'database/migrations/1629960945157_add_akses_tables', 1, '2021-09-06 09:53:23'),
+	(2, 'database/migrations/1629961854401_add_memberships', 1, '2021-09-06 09:53:23'),
+	(3, 'database/migrations/1629962782041_add_log_data', 1, '2021-09-06 09:53:23'),
+	(4, 'database/migrations/1629962934042_add_users', 1, '2021-09-06 09:53:23'),
+	(5, 'database/migrations/1630503644930_add_roles', 1, '2021-09-06 09:53:23'),
+	(6, 'database/migrations/1630503794171_update_users', 1, '2021-09-06 09:53:23'),
+	(7, 'database/migrations/1630897829179_add_paket_memberships', 2, '2021-09-06 13:12:59'),
+	(8, 'database/migrations/1630904723934_add_biaya_to_memberships', 2, '2021-09-06 13:12:59');
+/*!40000 ALTER TABLE `adonis_schema` ENABLE KEYS */;
+
+-- Dumping structure for table pms_membership_dev.akses
+CREATE TABLE IF NOT EXISTS `akses` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `kunci` varchar(255) DEFAULT NULL,
+  `is_active` tinyint(1) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `akses_kunci_unique` (`kunci`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table pms_membership_dev.akses: ~0 rows (approximately)
+/*!40000 ALTER TABLE `akses` DISABLE KEYS */;
+INSERT INTO `akses` (`id`, `kunci`, `is_active`, `created_at`, `updated_at`) VALUES
+	(1, '$2a$12$hkjOmPXyrnSgpAwolPsgi.bz4pRwCc8GNloU3B.mOkFPqmf.Oidvu', 1, '2021-09-06 06:57:41', '2021-09-06 06:57:41');
+/*!40000 ALTER TABLE `akses` ENABLE KEYS */;
+
+-- Dumping structure for table pms_membership_dev.log_data
+CREATE TABLE IF NOT EXISTS `log_data` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `activity` varchar(255) DEFAULT NULL,
+  `kode_pass` varchar(255) DEFAULT NULL,
+  `no_kartu` varchar(255) DEFAULT NULL,
+  `no_kendaraan` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table pms_membership_dev.log_data: ~0 rows (approximately)
+/*!40000 ALTER TABLE `log_data` DISABLE KEYS */;
+/*!40000 ALTER TABLE `log_data` ENABLE KEYS */;
+
+-- Dumping structure for table pms_membership_dev.membership
+CREATE TABLE IF NOT EXISTS `membership` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `kode_lokasi` varchar(255) DEFAULT NULL,
+  `kode_pass` varchar(255) DEFAULT NULL,
+  `no_kendaraan` varchar(255) DEFAULT NULL,
+  `nama_pemilik` varchar(255) DEFAULT NULL,
+  `ket_pemilik` varchar(255) DEFAULT NULL,
+  `nama_pelanggan` varchar(255) DEFAULT NULL,
+  `waktu` int DEFAULT NULL,
+  `periode` varchar(255) DEFAULT NULL,
+  `tanggal_berlaku` timestamp NULL DEFAULT NULL,
+  `tanggal_berakhir` timestamp NULL DEFAULT NULL,
+  `no_kartu` varchar(255) DEFAULT NULL,
+  `kode_produk` varchar(255) DEFAULT NULL,
+  `status_kendaraan` int DEFAULT NULL,
+  `jenis_kendaraan` varchar(255) DEFAULT NULL,
+  `biaya_administrasi` bigint DEFAULT NULL,
+  `is_active` tinyint(1) DEFAULT NULL,
+  `kendaraan_ke` int DEFAULT NULL,
+  `created_by` varchar(255) DEFAULT NULL,
+  `updated_by` varchar(255) DEFAULT NULL,
+  `is_refresh` tinyint(1) DEFAULT NULL,
+  `is_write_local` tinyint(1) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `biaya` int DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table pms_membership_dev.membership: ~4 rows (approximately)
+/*!40000 ALTER TABLE `membership` DISABLE KEYS */;
+INSERT INTO `membership` (`id`, `kode_lokasi`, `kode_pass`, `no_kendaraan`, `nama_pemilik`, `ket_pemilik`, `nama_pelanggan`, `waktu`, `periode`, `tanggal_berlaku`, `tanggal_berakhir`, `no_kartu`, `kode_produk`, `status_kendaraan`, `jenis_kendaraan`, `biaya_administrasi`, `is_active`, `kendaraan_ke`, `created_by`, `updated_by`, `is_refresh`, `is_write_local`, `created_at`, `updated_at`, `biaya`) VALUES
+	(1, 'BPJ-1119-001', 'MT200388', '3007TXM', 'Ardi Yulijal', 'Kios Baju (00340)', 'Pedagang K5', 1, 'BULAN', '2021-08-27 18:20:51', '2021-10-28 01:20:51', '8A5E3B3B', 'MTR1BLN', 1, 'MOTOR', 70000, 1, 1, 'FIRDAUS', 'FIRDAUS', 0, 1, '2021-09-06 06:57:47', '2021-09-06 06:57:47', NULL),
+	(2, 'BPJ-1119-002', 'MT200389', '8807TXN', 'Ardi', 'Kios Baju (00340)', 'Pedagang K5', 1, 'BULAN', '2021-08-27 18:20:51', '2021-10-28 01:20:51', '8A5E3B4D', 'MTR1BLN', 1, 'MOTOR', 70000, 1, 1, 'FIRDAUS', 'FIRDAUS', 0, 1, '2021-09-06 07:01:48', '2021-09-06 07:01:48', NULL),
+	(3, 'BPJ-1119-003', 'MT200390', '1807TKK', 'Salim', 'Kios Baju (00340)', 'Pedagang K5', 1, 'BULAN', '2021-08-27 18:20:51', '2021-10-28 01:20:51', '9D5E3B6Y', 'MTR1BLN', 1, 'MOTOR', 70000, 1, 1, 'FIRDAUS', 'FIRDAUS', 1, 0, '2021-09-06 07:04:55', '2021-09-06 07:04:55', NULL),
+	(4, 'BPJ-1119-003', 'MT200391', '1807TBN', 'Salima', 'Kios Baju (00340)', 'Pedagang K5', 1, NULL, '2021-08-27 18:20:51', '2021-10-28 01:20:51', '9D5E3B9H', 'MTR1BLN', 1, 'MOTOR', 70000, 1, 1, 'FIRDAUS', 'FIRDAUS', 1, 0, '2021-09-06 07:05:48', '2021-09-06 07:05:48', NULL);
+/*!40000 ALTER TABLE `membership` ENABLE KEYS */;
+
+-- Dumping structure for table pms_membership_dev.paket_membership
+CREATE TABLE IF NOT EXISTS `paket_membership` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `kode_lokasi` varchar(255) DEFAULT NULL,
+  `nama_lokasi` varchar(255) DEFAULT NULL,
+  `kode_paket` varchar(255) DEFAULT NULL,
+  `jenis_kendaraan` varchar(255) DEFAULT NULL,
+  `tarif` int DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table pms_membership_dev.paket_membership: ~0 rows (approximately)
+/*!40000 ALTER TABLE `paket_membership` DISABLE KEYS */;
+/*!40000 ALTER TABLE `paket_membership` ENABLE KEYS */;
+
+-- Dumping structure for table pms_membership_dev.roles
+CREATE TABLE IF NOT EXISTS `roles` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `roles` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table pms_membership_dev.roles: ~0 rows (approximately)
+/*!40000 ALTER TABLE `roles` DISABLE KEYS */;
+/*!40000 ALTER TABLE `roles` ENABLE KEYS */;
+
+-- Dumping structure for table pms_membership_dev.users
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int unsigned NOT NULL AUTO_INCREMENT,
+  `kode_pass` varchar(255) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `is_active` tinyint(1) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `kode_lokasi` varchar(255) DEFAULT NULL,
+  `role_id` int unsigned DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `users_role_id_foreign` (`role_id`),
+  CONSTRAINT `users_role_id_foreign` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table pms_membership_dev.users: ~0 rows (approximately)
+/*!40000 ALTER TABLE `users` DISABLE KEYS */;
+/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+
+/*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
+/*!40014 SET FOREIGN_KEY_CHECKS=IFNULL(@OLD_FOREIGN_KEY_CHECKS, 1) */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40111 SET SQL_NOTES=IFNULL(@OLD_SQL_NOTES, 1) */;

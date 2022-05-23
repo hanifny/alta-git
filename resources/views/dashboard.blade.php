@@ -11,7 +11,7 @@
                 <div class="p-6 bg-white border-b border-gray-200 d-flex align-items-center justify-content-center">
                     <!-- You're logged in! -->
                     <div>
-                        {{$text}}
+                        {{$text}} Update
                         <img src={{asset($image)}} class="rounded w-25 border border-success">
                     </div>
                     <div>
